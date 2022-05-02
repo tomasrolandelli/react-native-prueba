@@ -6,20 +6,19 @@ class Contador extends Component {
     constructor(props){
         super(props);
         this.state={
-            value: 0
+            value: ''
         }
     }
-    aumentar(){
-        this.setState({
-            value: this.state.value + 1
-        })
-    }
+
   render() {
     return (
         <View style={styles.contenedor}>
-            <Text>Cantidad de clicks: {this.state.value}</Text>
-            <TouchableOpacity style={styles.botonContador} onPress={()=>this.aumentar()}>
+            <Text>Cantidad de clicks: {this.props.valor}</Text>
+            <TouchableOpacity style={styles.botonContador} onPress={()=> this.props.funcionAumentar()}>
                 <Text style={styles.texto}>Clickeame</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.botonReset} onLongPress={()=> this.props.funcionReset()}>
+                <Text style={styles.texto} >Reset</Text>
             </TouchableOpacity>
         </View>
     )
@@ -32,14 +31,23 @@ const styles = StyleSheet.create({
     botonContador: {
         backgroundColor: 'rgba(0, 255, 0, 0.5)',
         borderRadius: 4,
-        border: '2px solid black',
         padding: 7,
         marginBottom: 10,
+        borderWidth: 1,
+        borderColor: "rgb(0,0,0)",
 
     },
     texto:{
         fontWeight: 'bold',
-        fontSize: 'xxsmall'
+        textAlign: 'center'
+    },
+    botonReset:{
+        backgroundColor: 'rgb(255, 0, 0)',
+        borderRadius: 4,
+        marginBottom: 10,
+        padding: 7,
+        borderWidth: 1,
+        borderColor: "rgb(0,0,0)",
     }
 })
 

@@ -13,14 +13,26 @@ class Home extends Component {
     imprimir(){
         console.log('Hola mundo');
     }
+    aumentar(){
+        this.setState({
+            value: this.state.value + 1
+        })
+    }
+    reset(){
+        this.setState({
+            value: 0
+        })
+    }
+
   render() {
     return (
         <View style={styles.contenedor}>
-            <Text>Hola mundo</Text>
+            <Text style={styles.textoNotBold}>Hola mundo</Text>
             <TouchableOpacity style={styles.boton} onPress={()=> this.imprimir()}>
             <Text style={styles.texto}>Clickeame</Text>
             </TouchableOpacity>
-            <Contador/>
+            <Contador funcionAumentar={()=>this.aumentar()} funcionReset={()=>this.reset()} valor={this.state.value}/>
+
         </View>
     )
   }
@@ -29,20 +41,27 @@ const styles = StyleSheet.create({
     contenedor:{
         textAlign: 'center',
         padding: 10,
-        border: '2px solid #ccc',
         borderRadius: 4,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        borderStyle: "solid",
+        borderWidth: 3,
+        borderColor: '#00FFFF'
 
     },
     boton: {
         borderRadius: 4,
-        border: '2px solid black',
         backgroundColor: '#ccc',
         marginBottom: 10,
-        padding: 7
+        padding: 7,
+        borderWidth: 1,
+        borderColor: "rgb(0,0,0)",
     },
     texto: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+    textoNotBold:{
+        textAlign: 'center'
     }
 
 })
