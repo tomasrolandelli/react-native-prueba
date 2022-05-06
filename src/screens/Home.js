@@ -32,7 +32,7 @@ class Home extends Component {
     componentDidMount() {
         fetch('https://rickandmortyapi.com/api/character')
             .then((res) => res.json())
-            .then((data) =>{
+            .then((data) => {
                 this.setState({
                     fotosRAM: data.results,
                     verFotos: true,
@@ -51,16 +51,16 @@ class Home extends Component {
                 </TouchableOpacity>
                 <Contador funcionAumentar={() => this.aumentar()} funcionReset={() => this.reset()} valor={this.state.value} />
                 <ImageXD /> */}
-                {this.state.isLoaded? 
-                null
-                :
-                <ActivityIndicator size='large' color='green'/>
+                {this.state.isLoaded ?
+                    null
+                    :
+                    <ActivityIndicator size='large' color='green' />
                 }
                 {this.state.verFotos ?
                     <FlatList
                         data={this.state.fotosRAM}
                         keyExtractor={(item) => item.id.toString()}
-                        renderItem={({ item }) => <Card info={item} styles={styles}/>} />
+                        renderItem={({ item }) => <Card info={item} styles={styles} />} />
                     :
                     null}
 
