@@ -3,7 +3,7 @@ import { View, Text, Image } from 'react-native'
 function Card(props){
     return(
         <View>
-            <Image style={props.styles.imageRAM} source={require('../../../assets/pandora.jpeg')} resizeMode='contain' />
+            <Image style={props.styles.imageRAM} source={{uri: props.info.image}} resizeMode='contain' />
             <Text>{props.info.origin.name}</Text>
         </View>
     )
