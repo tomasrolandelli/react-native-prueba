@@ -5,6 +5,7 @@ import Register from './src/screens/Register';
 import react, { Component } from 'react';
 import Header from './src/components/Header/Header';
 import Login from './src/screens/Login';
+import TabNavigation from './src/navigation/TabNavigation';
 
 export default class App extends Component {
   constructor(props) {
@@ -30,18 +31,20 @@ export default class App extends Component {
   }
   render() {
     return (
-      <View style={styles.container}>
-        {/* <Home></Home> */}
-        <Header toggleLogin={() => this.toggleLogin()} toggleRegister={() => this.toggleRegister()} style={styles}></Header>
-        {this.state.loginActive === true ?
-          <Login style={styles}></Login>
-          :
-          null}
-        {this.state.registerActive === true ?
-          <Register style={styles}></Register>
-          :
-          null}
-      </View>
+      // <View>
+      //   {/* <Home></Home> */}
+      //   {/* <Header toggleLogin={() => this.toggleLogin()} toggleRegister={() => this.toggleRegister()} style={styles}></Header>
+      //   {this.state.loginActive === true ?
+      //     <Login style={styles}></Login>
+      //     :
+      //     null}
+      //   {this.state.registerActive === true ?
+      //     <Register style={styles}></Register>
+      //     :
+      //     null} */}
+      // </View>
+      <TabNavigation style={styles}></TabNavigation>
+
     )
   }
 }

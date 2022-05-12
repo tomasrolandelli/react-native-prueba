@@ -22,6 +22,7 @@ export default class Login extends Component {
             })
     }
     render() {
+        console.log(this.props);
         return (
             <View style={this.props.style.containerForm}>
                 <Text style={this.props.style.h1}> Login:  </Text>
