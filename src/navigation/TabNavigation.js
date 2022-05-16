@@ -5,29 +5,36 @@ import { View } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 
 import Home from "../screens/Home";
-import Login from "../screens/Login";
-import Hola from "../screens/Hola";
 import Chau from "../screens/Chau";
+import Account from "../screens/Account";
+
 
 const Tab = createBottomTabNavigator()
 
 function TabNavigation(props) {
     return (
-        <NavigationContainer>
-            <Tab.Navigator >
-                <Tab.Screen
-                    style={props.style}
-                    name='Hola'
-                    component={Hola}
-                    options={{ tabBarIcon: () => <AntDesign name="banckward" size={24} color="black" /> }}
-                />
-                <Tab.Screen
-                    style={props.style}
-                    name='Chau'
-                    component={Chau}
-                />
-            </Tab.Navigator>
-        </NavigationContainer>
+        <Tab.Navigator >
+            <Tab.Screen
+                name="Home"
+                component={Home}
+                initialParams={{
+                    style: props.route.params.style
+
+                }}
+                options={{ headerShown: false }}
+            />
+            <Tab.Screen
+                name='Account'
+                component={Account}
+                initialParams={{
+                    onLogout: ()=> props.route.params.onLogout()
+                }}
+                options={{
+                    tabBarIcon: () => <AntDesign name="banckward" size={24} color="black" />,
+                    headerShown: false
+                }}
+            />
+        </Tab.Navigator>
     )
 }
 // children={()=> <Hola estilos={StyleSheet.flatten(styles.container)} />}

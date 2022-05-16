@@ -1,11 +1,15 @@
+//ELEMENTOS REACT
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image } from 'react-native';
+import react, { Component } from 'react';
+
+//SCREENS
 import Home from './src/screens/Home';
 import Register from './src/screens/Register';
-import react, { Component } from 'react';
 import Header from './src/components/Header/Header';
 import Login from './src/screens/Login';
 import TabNavigation from './src/navigation/TabNavigation';
+import StackNavigation from './src/navigation/StackNavigation';
 
 export default class App extends Component {
   constructor(props) {
@@ -43,7 +47,8 @@ export default class App extends Component {
       //     :
       //     null} */}
       // </View>
-      <TabNavigation style={styles}></TabNavigation>
+      // <TabNavigation style={styles}></TabNavigation>
+      <StackNavigation style={styles}></StackNavigation>
 
     )
   }
@@ -102,6 +107,13 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'black',
     textAlign: 'center'
+  },
+  botonRedirect: {
+    backgroundColor: "#DFB0A2",
+    margin: 5,
+    padding: 5,
+    borderWidth: 2,
+    borderRadius: 2
   }
 
 });

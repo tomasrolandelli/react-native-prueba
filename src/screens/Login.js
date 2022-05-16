@@ -8,39 +8,28 @@ export default class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            loggedIn: false,
             error: ''
         }
     }
-    onSubmit(email, pass) {
-        auth.signInWithEmailAndPassword(email, pass)
-            .then((response) => {
-                this.setState({ loggedIn: true }, () => console.log(this.state.loggedIn))
-            })
-            .catch((error) => {
-                this.setState({ error: 'Credenciales invalidas' })
-            })
-    }
     render() {
-        console.log(this.props);
         return (
-            <View style={this.props.style.containerForm}>
-                <Text style={this.props.style.h1}> Login:  </Text>
+            <View style={this.props.route.params.style.containerForm}>
+                <Text style={this.props.route.params.style.h1}> Login:  </Text>
                 <TextInput
-                    style={this.props.style.formulario}
+                    style={this.props.route.params.style.formulario}
                     keyboardType='email-address'
                     placeholder='email'
                     onChangeText={(text) => this.setState({ email: text })}
                 />
                 <TextInput
-                    style={this.props.style.formulario}
+                    style={this.props.route.params.style.formulario}
                     keyboardType='default'
                     placeholder='password'
                     secureTextEntry={true}
                     onChangeText={(text) => this.setState({ password: text })}
                 />
-                <TouchableOpacity style={this.props.style.botonForm} onPress={() => this.onSubmit(this.state.email, this.state.password)}>
-                    <Text style={this.props.style.textoBoton}> LOGIN </Text>
+                <TouchableOpacity style={this.props.route.params.style.botonForm} onPress={() => this.props.route.params.onLogin(this.state.email, this.state.password)}>
+                    <Text style={this.props.route.params.style.textoBoton}> LOGIN </Text>
                 </TouchableOpacity>
                 {this.state.error !== '' ?
                     <Text>{this.state.error}</Text>
