@@ -1,10 +1,10 @@
 //ELEMENTOS REACT
 import React, { Component } from 'react'
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useRoute } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 //AUTH
-import { auth } from '../firebase/config';
+import { auth, db } from '../firebase/config';
 
 //SCREENS
 import TabNavigation from './TabNavigation';
@@ -24,11 +24,11 @@ export default class StackNavigation extends Component {
         }
     }
 
-    componentDidMount() {
-        auth.onAuthStateChanged(user => {
-            console.log(user);
-        })
-    }
+    // componentDidMount() {
+    //     auth.onAuthStateChanged(user => {
+    //         console.log(user);
+    //     })
+    // }
     onLogin(email, pass) {
         auth.signInWithEmailAndPassword(email, pass)
             .then((response) => {
@@ -38,21 +38,30 @@ export default class StackNavigation extends Component {
                 this.setState({ error: 'Credenciales invalidas' })
             })
     }
-    onRegister(email, pass) {
+    onRegister(email, pass, user) {
+
         auth.createUserWithEmailAndPassword(email, pass)
             .then((response) => {
-                this.setState({ loggedIn: true });
+                this.setState({ loggedIn: true })
+                db.collection('users').add({
+                    email: email,
+                    password: pass,
+                    username: user,
+                    createdAt: Date.now()
+                })
+                    .then((response) => console.log(response))
+                    .catch((err) => console.log(err))
             })
             .catch(error => {
                 this.setState({ error: 'Fallo en el registro.' })
                 console.error(error)
             })
     }
-    onLogout(){
+    onLogout() {
         auth.signOut()
-        .then(response=> this.setState({
-            loggedIn: false
-        }))
+            .then(response => this.setState({
+                loggedIn: false
+            }))
     }
     render() {
         return (
@@ -65,7 +74,7 @@ export default class StackNavigation extends Component {
                             options={{ headerShown: false }}
                             initialParams={{
                                 style: this.props.style,
-                                onLogout: ()=> this.onLogout()
+                                onLogout: () => this.onLogout()
                             }}
 
                         />
@@ -76,7 +85,7 @@ export default class StackNavigation extends Component {
                                 component={Register}
                                 initialParams={{
                                     style: this.props.style,
-                                    onRegister: (email,pass) => this.onRegister(email,pass)
+                                    onRegister: (email, pass, user) => this.onRegister(email, pass, user)
 
                                 }}
 
@@ -86,7 +95,7 @@ export default class StackNavigation extends Component {
                                 component={Login}
                                 initialParams={{
                                     style: this.props.style,
-                                    onLogin: (email,pass) => this.onLogin(email,pass)
+                                    onLogin: (email, pass) => this.onLogin(email, pass)
                                 }}
 
                             />
