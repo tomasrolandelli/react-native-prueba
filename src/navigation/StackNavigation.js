@@ -21,6 +21,7 @@ export default class StackNavigation extends Component {
         super(props)
         this.state = {
             loggedIn: false,
+            email: ''
         }
     }
 
@@ -32,7 +33,7 @@ export default class StackNavigation extends Component {
     onLogin(email, pass) {
         auth.signInWithEmailAndPassword(email, pass)
             .then((response) => {
-                this.setState({ loggedIn: true })
+                this.setState({ loggedIn: true, email: email  })
             })
             .catch((error) => {
                 this.setState({ error: 'Credenciales invalidas' })
@@ -74,7 +75,8 @@ export default class StackNavigation extends Component {
                             options={{ headerShown: false }}
                             initialParams={{
                                 style: this.props.style,
-                                onLogout: () => this.onLogout()
+                                onLogout: () => this.onLogout(),
+                                email: this.state.email
                             }}
 
                         />

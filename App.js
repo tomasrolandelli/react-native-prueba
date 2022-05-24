@@ -114,6 +114,43 @@ const styles = StyleSheet.create({
     padding: 5,
     borderWidth: 2,
     borderRadius: 2
+  },
+  flatlist:{
+    backgroundColor: '#DFB0A2',
+    margin: 5,
+    borderWidth: 2,
+    textAlign: 'center'
+  },
+  post:{
+    backgroundColor: '#00FFFF',
+    margin: 5,
+    borderWidth: 1,
+    borderRadius: 4
+  },
+  botonLogout:{
+    backgroundColor: '#FF0000',
+    fontSize: 'large',
+    borderWidth: 2,
+    borderRadius: 4
+  },
+  textoLogout:{
+    fontSize: 'large',
+    textAlign: 'center'
+  },
+  divLikes:{
+    display: 'flex',
+    flexDirection: 'row',
+    padding: 3
+  },
+  like: {
+    padding: 7
+  },
+  h1:{
+    fontSize: 'large',
+    textAlign: 'center',
+
+  }, contenedor:{
+    flex: 1
   }
 
 });

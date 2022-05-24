@@ -10,7 +10,6 @@ class Home extends Component {
         super(props)
         this.state = {
             value: 0,
-            verFotos: false,
             fotosRAM: [],
             isLoaded: false
         }
@@ -35,7 +34,6 @@ class Home extends Component {
             .then((data) => {
                 this.setState({
                     fotosRAM: data.results,
-                    verFotos: true,
                     isLoaded: true
                 })
             })
@@ -52,17 +50,13 @@ class Home extends Component {
                 <Contador funcionAumentar={() => this.aumentar()} funcionReset={() => this.reset()} valor={this.state.value} />
                 <ImageXD /> */}
                 {this.state.isLoaded ?
-                    null
-                    :
-                    <ActivityIndicator size='large' color='green' />
-                }
-                {this.state.verFotos ?
                     <FlatList
                         data={this.state.fotosRAM}
                         keyExtractor={(item) => item.id.toString()}
-                        renderItem={({ item }) => <Card info={item} styles={styles} />} />
+                        renderItem={({ item }) => <Card info={item} style={styles} />} />
                     :
-                    null}
+                    <ActivityIndicator size='large' color='green' />
+                }
 
             </View>
         )
@@ -76,7 +70,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderStyle: "solid",
         borderWidth: 3,
-        borderColor: '#00FFFF'
+        borderColor: '#00FFFF',
+        flex: 1
 
     },
     boton: {
@@ -95,8 +90,25 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     imageRAM: {
-        height: 400,
-        width: 400
+        height: 100,
+        width: 100
+    },
+    card:{
+        justifyContent: 'flex-start',
+        backgroundColor: '#00FFFF',
+        margin: 5,
+        display: 'flex',
+        flexDirection: 'row',
+        alignContent: 'center',
+        padding: 5,
+        borderWidth: 2,
+
+    },
+    name:{
+        fontSize: 'large',
+        padding: 5,
+        alignSelf: 'center',
+
     }
 
 })
