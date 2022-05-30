@@ -20,9 +20,11 @@ export default class AgregarPosts extends Component {
       comments: []
 
     })
-      .then((response) => {this.setState({
-        messageState: true
-      }),console.log(Date.now())})
+      .then((response) => {
+        this.setState({
+          messageState: true
+        }), console.log(Date.now())
+      })
       .catch((error) => console.log(error))
   }
   render() {

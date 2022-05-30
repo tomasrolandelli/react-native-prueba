@@ -11,6 +11,7 @@ import TabNavigation from './TabNavigation';
 import Register from '../screens/Register';
 import Login from '../screens/Login';
 import Home from '../screens/Home';
+import Comments from '../screens/Comments';
 
 
 const Stack = createNativeStackNavigator();
@@ -20,7 +21,7 @@ export default class StackNavigation extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            loggedIn: false,
+            loggedIn: true,
             email: ''
         }
     }
@@ -33,7 +34,7 @@ export default class StackNavigation extends Component {
     onLogin(email, pass) {
         auth.signInWithEmailAndPassword(email, pass)
             .then((response) => {
-                this.setState({ loggedIn: true, email: email  })
+                this.setState({ loggedIn: true, email: email })
             })
             .catch((error) => {
                 this.setState({ error: 'Credenciales invalidas' })
@@ -69,17 +70,23 @@ export default class StackNavigation extends Component {
             <NavigationContainer>
                 <Stack.Navigator>
                     {this.state.loggedIn ?
-                        <Stack.Screen
-                            name='Tab'
-                            component={TabNavigation}
-                            options={{ headerShown: false }}
-                            initialParams={{
-                                style: this.props.style,
-                                onLogout: () => this.onLogout(),
-                                email: this.state.email
-                            }}
+                        <>
+                            <Stack.Screen
+                                name='Tab'
+                                component={TabNavigation}
+                                options={{ headerShown: false }}
+                                initialParams={{
+                                    style: this.props.style,
+                                    onLogout: () => this.onLogout(),
+                                    email: this.state.email
+                                }}
 
-                        />
+                            />
+                            <Stack.Screen
+                                name='Comments'
+                                component={Comments}
+                            />
+                        </>
                         :
                         <Stack.Group>
                             <Stack.Screen

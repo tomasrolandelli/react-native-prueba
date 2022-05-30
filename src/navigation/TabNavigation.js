@@ -37,7 +37,8 @@ function TabNavigation(props) {
                 component={Account}
                 initialParams={{
                     onLogout: ()=> props.route.params.onLogout(),
-                    style: props.route.params.style
+                    style: props.route.params.style,
+                    navigation: props.navigation
                 }}
                 options={{
                     tabBarIcon: () => <MaterialIcons name="account-circle" size={24} color="black" />,

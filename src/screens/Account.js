@@ -56,7 +56,7 @@ export default class Account extends Component {
           style={style.flatlist}
           data={this.state.posts}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => <Post style={style} info={item} />}
+          renderItem={({ item }) => <Post style={style} info={item} navigation={this.props.route.params.navigation}/>}
         />
         <TouchableOpacity style={style.botonLogout} onPress={() => props.route.params.onLogout()}>
           <Text style={style.textoLogout}>Press here to logout</Text>

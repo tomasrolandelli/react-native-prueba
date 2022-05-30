@@ -75,6 +75,9 @@ export default class Post extends Component {
 
                     }
                 </View>
+                <TouchableOpacity onPress={()=> this.props.navigation.navigate('Comments',{id: this.props.info.id})}>
+                    <Text>Comentar</Text>
+                </TouchableOpacity>
             </View>
         )
     }
